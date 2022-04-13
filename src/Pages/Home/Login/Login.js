@@ -1,21 +1,35 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendEmailVerification, useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import SocalLogin from '../Home/SocalLogin/SocalLogin';
 
 const Login = () => {
     const naviagte = useNavigate()
     const location = useLocation()
      
      const from = location.state?.from?.pathname || '/'
-
+     
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
+
+      const [sendPasswordResetEmail, sending,] = useSendPasswordResetEmail( auth );
+      
+      const resetPassword =async()=>{
+        const email = emailRef.current.value
+        await sendPasswordResetEmail(email)
+        alert('Sent email');
+      }
+   
+      let errorElement ;
+      if (error) {
+          errorElement= <p className='text-danger'>Error: {error?.message}</p>    
+      }
 
       if(user){
          naviagte(from , {replace: true})
@@ -39,25 +53,21 @@ const Login = () => {
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
                     <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
                 </Form.Group>
-
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                   
                     <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
+               
+                <Button variant="primary w-50 d-block mx-auto " type="submit">
+                   Please Login
                 </Button>
             </Form>
-            <p> New to Genius Car ? <Link to='/register' className='text-danger text-decoration-none' >Please Register</Link></p>
+            {errorElement}
+            <p className='mt-2'> New to Genius Car ? <Link to='/register' className='text-danger text-decoration-none' >Please Register</Link></p>
+            <p className='mt-2'> Forget Password ? <Link onClick={resetPassword} to='/register' className='text-primary text-decoration-none' >Reset Password</Link></p>
+             <SocalLogin></SocalLogin>
         </div>
     );
 };

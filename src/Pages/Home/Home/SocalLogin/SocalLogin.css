@@ -1,0 +1,13 @@
+.line{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.line p{
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.line div{
+    width: 50%;
+    border: 1px solid rgb(252, 189, 189);
+}
