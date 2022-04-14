@@ -2,6 +2,7 @@ import React from 'react';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../../firebase.init';
+import Loaging from '../../../Shared/Loading/Loaging';
 import './SocalLogin.css'
 const SocalLogin = () => {
     const naviagte = useNavigate()
@@ -15,7 +16,9 @@ const SocalLogin = () => {
     const handleWithGithub=()=>{
         signInWithGithub()
     }
-
+    if(loading || loading1){
+        return <Loaging></Loaging>
+     }
     let errorElement ;
     if (error || error1) {
         
