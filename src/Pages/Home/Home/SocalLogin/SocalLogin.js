@@ -44,7 +44,7 @@ const SocalLogin = () => {
             <div className='mt-4 w-25'>
                 <button className='btn btn-danger'><span className=''><img style={{ width: '25px' }} src="https://img.icons8.com/color/2x/facebook-new.png" alt="" />Facebook Login</span></button>
             </div>
-            <div className='mt-4 w-25'>
+            <div className='pp mt-4 w-25'>
                 <button onClick={()=>handleWithGithub()} className='btn btn-danger'><span className='m-2'><img style={{ width: '25px' }} src="https://img.icons8.com/ios-glyphs/2x/github.png" alt="" />Githup Login</span></button>
             </div>
         </div>

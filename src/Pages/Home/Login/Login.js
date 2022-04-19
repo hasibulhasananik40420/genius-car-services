@@ -7,6 +7,7 @@ import SocalLogin from '../Home/SocalLogin/SocalLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loaging from '../../Shared/Loading/Loaging';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 const Login = () => {
     const naviagte = useNavigate()
@@ -33,6 +34,7 @@ const Login = () => {
            toast('Please enter your email')
        }
       }
+      
       let errorElement ;
       if (error) {
           errorElement= <p className='text-danger'>Error: {error?.message}</p>    
@@ -55,6 +57,7 @@ const Login = () => {
     
     return (
         <div className='container w-50 mx-auto'>
+              <PageTitle title='Login'></PageTitle>
             <h1 className='text-center text-info mt-2'>please login</h1>
 
             <Form onSubmit={handleSubmit}>
@@ -72,7 +75,7 @@ const Login = () => {
             </Form>
             {errorElement}
             <p className='mt-2'> New to Genius Car ? <Link to='/register' className='text-danger text-decoration-none' >Please Register</Link></p>
-            <p className='mt-2'> Forget Password ? <button onClick={resetPassword} to='/register' className='btn btn-link text-primary text-decoration-none' >Reset Password</button></p>
+            <p className='mt-2'> Forget Password ? <button onClick={resetPassword}  className='btn btn-link text-primary text-decoration-none' >Reset Password</button></p>
              <SocalLogin></SocalLogin>
              <ToastContainer />
         </div>

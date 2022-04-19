@@ -33,7 +33,7 @@ const Register = () => {
          const password = event.target.password.value;
 
          await createUserWithEmailAndPassword(email , password)
-
+        //  updated profil
          await updateProfile({ displayName: name})
          console.log('Updated profile')
          naviagte('/home')
