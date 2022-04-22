@@ -8,14 +8,14 @@ const Service = ({service}) => {
      const navigateToServiceDetail=id=>{
         navigate(`/service/${id}`)
      }
-    const {name, img, description, price,id} = service;
+    const {name, img, description, price,_id} = service;
     return (
         <div className='service'>
             <img className='w-100' src={img} alt="" />
             <h2>{name}</h2>
             <p>Price: {price}</p>
             <p><small>{description}</small></p>
-            <button onClick={()=>navigateToServiceDetail(id)} className='btn btn-primary'>Book: {name}</button>
+            <button onClick={()=>navigateToServiceDetail(_id)} className='btn btn-primary'>Book: {name}</button>
         </div>
     );
 };
